@@ -1,0 +1,63 @@
+/* ─── assets/css/variables.css ───
+   CSS Custom Properties — semua warna, font, spacing, shadow didefinisikan di sini.
+   TIDAK BOLEH ada hardcode hex/rgb di file CSS lain.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+    /* ── Warna Primer (Hijau) ── */
+    --color-primary:        #16a34a;  /* Hijau utama */
+    --color-primary-dark:   #052e16;  /* Hijau sangat gelap */
+    --color-primary-mid:    #14532d;  /* Hijau gelap */
+    --color-primary-light:  #dcfce7;  /* Hijau muda */
+    --color-primary-pale:   #f0fdf4;  /* Hijau sangat muda */
+    --color-primary-accent: #4ade80;  /* Hijau terang */
+
+    /* ── Warna Netral ── */
+    --color-bg:             #f8fafc;  /* Background body admin */
+    --color-surface:        #ffffff;  /* Background card, form */
+    --color-border:         #e2e8f0;  /* Border default */
+    --color-border-light:   #f1f5f9;  /* Border ringan */
+
+    /* ── Warna Teks ── */
+    --color-text:           #0f172a;  /* Teks utama */
+    --color-text-muted:     #64748b;  /* Teks sekunder */
+    --color-text-light:     #94a3b8;  /* Label, caption */
+
+    /* ── Warna Status ── */
+    --color-danger:         #dc2626;  /* Merah */
+    --color-danger-light:   #fee2e2;
+    --color-warning:        #d97706;  /* Amber */
+    --color-warning-light:  #fef3c7;
+    --color-info:           #2563eb;  /* Biru */
+    --color-info-light:     #dbeafe;
+    --color-purple:         #7c3aed;  /* Ungu */
+    --color-purple-light:   #ede9fe;
+
+    /* ── Tipografi ── */
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'Outfit', 'Segoe UI', system-ui, sans-serif;
+    --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+    /* ── Border Radius ── */
+    --radius-sm:  6px;
+    --radius:     10px;
+    --radius-md:  14px;
+    --radius-lg:  20px;
+    --radius-xl:  28px;
+
+    /* ── Shadow ── */
+    --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 8px rgba(0,0,0,.04);
+    --shadow:     0 2px 8px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+    --shadow-md:  0 4px 24px rgba(0,0,0,.10);
+    --shadow-lg:  0 12px 48px rgba(0,0,0,.14);
+
+    /* ── Layout Admin ── */
+    --sidebar-width:  260px;
+    --topbar-height:  60px;
+
+    /* ── Transisi ── */
+    --transition:     all 0.18s ease;
+    --transition-fast: all 0.1s ease;
+}

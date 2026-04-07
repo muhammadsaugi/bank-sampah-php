@@ -1,0 +1,9 @@
+# Blok eksekusi file PHP di folder uploads (keamanan upload)
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
+
+# Izinkan akses gambar saja
+<FilesMatch "\.(jpg|jpeg|png|webp|gif)$">
+    Require all granted
+</FilesMatch>
