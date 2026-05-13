@@ -27,6 +27,10 @@ header('Content-Type: text/html; charset=UTF-8');
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/components.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/public.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>">
+
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>">
 </head>
@@ -68,6 +72,24 @@ header('Content-Type: text/html; charset=UTF-8');
                 </div>
             </div>
 
+            <!-- AWAL BAGIAN LAYANAN (Admin 1) -->
+<div class="dropdown">
+    <a href="<?= BASE_URL ?>/public/layanan.php" 
+       class="nav-link <?= in_array($navActive, ['layanan', 'pijar']) ? 'active' : '' ?>"
+       aria-haspopup="true" aria-expanded="false">
+        LAYANAN ▾
+    </a>
+    <div class="dropdown-menu" role="menu">
+        <a href="<?= BASE_URL ?>/public/pijar.php" role="menuitem">PIJAR</a>
+        <a href="<?= BASE_URL ?>/public/bu-masaroh.php" role="menuitem">BU MASAROH</a>
+        <a href="<?= BASE_URL ?>/public/kemana-akhir-kain-kita.php" role="menuitem">KEMANA AKHIR KAIN KITA</a>
+        <a href="<?= BASE_URL ?>/public/sedekah-sampah.php" role="menuitem">SEDEKAH SAMPAH</a>
+        <a href="<?= BASE_URL ?>/public/edukasi-pelatihan.php" role="menuitem">EDUKASI DAN PELATIHAN</a>
+        <a href="<?= BASE_URL ?>/public/kemitraan.php" role="menuitem">KEMITRAAN</a>
+    </div>
+</div>
+<!-- AKHIR BAGIAN LAYANAN -->
+
             <a href="<?= BASE_URL ?>/public/data-bank-sampah.php"
                class="nav-link <?= $navActive === 'bank-sampah' ? 'active' : '' ?>">Data Bank Sampah</a>
 
@@ -87,6 +109,8 @@ header('Content-Type: text/html; charset=UTF-8');
                class="nav-link <?= $navActive === 'galeri' ? 'active' : '' ?>">Galeri</a>
 
             <a href="<?= BASE_URL ?>/auth/login.php" class="navbar-login-btn">Login Admin</a>
+
         </div>
     </div>
 </nav>
+
