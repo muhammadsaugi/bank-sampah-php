@@ -40,6 +40,7 @@ require_once dirname(__DIR__, 2) . '/templates/admin/topbar.php';
         <div style="aspect-ratio:4/3;overflow:hidden;background:var(--color-primary-pale);">
             <img src="<?= BASE_URL ?>/uploads/galeri/<?= e($row['gambar']) ?>" alt="<?= e($row['judul']) ?>" style="width:100%;height:100%;object-fit:cover;">
         </div>
+        
         <div style="padding:.75rem;">
             <div style="font-weight:600;font-size:13.5px;margin-bottom:.25rem;"><?= e(truncate($row['judul'],40)) ?></div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.35rem;">
