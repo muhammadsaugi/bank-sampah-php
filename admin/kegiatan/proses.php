@@ -31,33 +31,64 @@ $aksi = Request::post('aksi');
 match($aksi) {
     'tambah' => (function(){
         $data = ambilDataKegiatan();
-        if (empty($data['judul']) || empty($data['tanggal'])) Response::redirect('/admin/kegiatan/tambah.php','Judul dan tanggal wajib diisi.','error');
+        
+        // --- VALIDASI SERVER-SIDE TAMBAH ---
+        if (empty($data['judul']) || empty($data['tanggal'])) {
+            Response::redirect('/admin/kegiatan/tambah.php', 'Judul dan Tanggal Mulai wajib diisi!', 'error');
+        }
+
         $file = Request::file('foto');
-        if ($file) { try { $data['foto'] = Upload::image($file,'kegiatan'); } catch(RuntimeException $e) { Response::redirect('/admin/kegiatan/tambah.php',$e->getMessage(),'error'); } }
+        if ($file && $file['error'] !== UPLOAD_ERR_NO_FILE) { 
+            if ($file['size'] > 2097152) { // Validasi Maksimal 2MB
+                Response::redirect('/admin/kegiatan/tambah.php', 'Gagal: Ukuran foto maksimal 2MB!', 'error');
+            }
+            try { 
+                $data['foto'] = Upload::image($file,'kegiatan'); 
+            } catch(RuntimeException $e) { 
+                Response::redirect('/admin/kegiatan/tambah.php',$e->getMessage(),'error'); 
+            } 
+        }
+        
         kegiatan_tambah($data);
         Response::redirect('/admin/kegiatan/index.php','Kegiatan berhasil ditambahkan.','success');
     })(),
+    
     'edit' => (function(){
         $id = Request::int('id');
         if ($id<=0) Response::redirect('/admin/kegiatan/index.php','ID tidak valid.','error');
+        
         $old = kegiatan_findById($id);
         $data = ambilDataKegiatan();
+
+        // --- VALIDASI SERVER-SIDE EDIT ---
+        if (empty($data['judul']) || empty($data['tanggal'])) {
+            Response::redirect('/admin/kegiatan/edit.php?id='.$id, 'Judul dan Tanggal Mulai wajib diisi!', 'error');
+        }
+
         $file = Request::file('foto');
-        if ($file) {
+        if ($file && $file['error'] !== UPLOAD_ERR_NO_FILE) {
+            if ($file['size'] > 2097152) { // Validasi Maksimal 2MB
+                Response::redirect('/admin/kegiatan/edit.php?id='.$id, 'Gagal: Ukuran foto maksimal 2MB!', 'error');
+            }
             try {
                 $data['foto'] = Upload::image($file,'kegiatan');
                 if ($old && $old['foto']) Upload::hapus($old['foto'],'kegiatan');
-            } catch(RuntimeException $e) { Response::redirect('/admin/kegiatan/edit.php?id='.$id,$e->getMessage(),'error'); }
+            } catch(RuntimeException $e) { 
+                Response::redirect('/admin/kegiatan/edit.php?id='.$id,$e->getMessage(),'error'); 
+            }
         }
+        
         kegiatan_edit($id,$data);
         Response::redirect('/admin/kegiatan/index.php','Kegiatan berhasil diperbarui.','success');
     })(),
+    
     'hapus' => (function(){
         $id = Request::int('id');
         $row = $id > 0 ? kegiatan_findById($id) : null;
         if ($row && $row['foto']) Upload::hapus($row['foto'],'kegiatan');
-        kegiatan_hapus($id);
+        if ($row) kegiatan_hapus($id);
         Response::redirect('/admin/kegiatan/index.php','Kegiatan berhasil dihapus.','success');
     })(),
-    default => Response::redirect('/admin/kegiatan/index.php','Aksi tidak dikenal.','error'),
+    
+    default => Response::redirect('/admin/kegiatan/index.php','Aksi tidak valid.','error')
 };

@@ -50,6 +50,7 @@ require_once dirname(__DIR__, 2) . '/templates/admin/topbar.php';
                 <td><?= e($row['lokasi']) ?></td>
                 <td><?= badgeStatus($row['status']) ?></td>
                 <td class="action-cell">
+                    <a href="detail.php?id=<?= (int)$row['id'] ?>" class="btn btn-sm btn-outline" title="Lihat Detail">👁️ Detail</a>
                     <a href="edit.php?id=<?= (int)$row['id'] ?>" class="btn btn-sm btn-secondary">✏️ Edit</a>
                     <form method="POST" action="proses.php" class="inline-form" onsubmit="return confirm('Hapus kegiatan ini?')">
                         <?= CSRF::input() ?><input type="hidden" name="aksi" value="hapus"><input type="hidden" name="id" value="<?= (int)$row['id'] ?>">
