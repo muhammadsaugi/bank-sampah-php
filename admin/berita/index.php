@@ -40,10 +40,9 @@ require_once dirname(__DIR__, 2) . '/templates/admin/topbar.php';
         <?php else: foreach ($data as $i => $row): ?>
             <tr>
                 <td><?= $i+1 ?></td>
-                <td><strong><?= e(truncate($row['judul'],60)) ?></strong><br><small class="text-muted"><?= e($row['slug']) ?></small></td>
+                <td><strong><?= e(truncate($row['judul'] ?? '',60)) ?></strong><br><small class="text-muted"><?= e($row['slug']) ?></small></td>
                 <td><?= e($row['kategori']) ?></td>
-                <td><?= e(truncate($row['tags'],40)) ?></td>
-                <td><?= badgeStatus($row['status']) ?></td>
+                <td><?= e(truncate($row['tags'] ?? '',40)) ?></td>
                 <td class="action-cell">
                     <a href="edit.php?id=<?= (int)$row['id'] ?>" class="btn btn-sm btn-secondary">✏️ Edit</a>
                     <form method="POST" action="proses.php" class="inline-form" onsubmit="return confirm('Hapus berita ini?')">
