@@ -6,6 +6,7 @@ require_once dirname(__DIR__, 2) . '/core/Auth.php';
 require_once dirname(__DIR__, 2) . '/core/Helper.php';
 require_once dirname(__DIR__, 2) . '/core/CSRF.php';
 require_once dirname(__DIR__, 2) . '/models/GaleriModel.php';
+require_once dirname(__DIR__, 2) . '/core/Response.php'; 
 
 Auth::cekSession(); Auth::cekRole(['admin_data','super_admin']);
 $pageTitle='Upload Foto Galeri'; $sidebarActive='galeri';
